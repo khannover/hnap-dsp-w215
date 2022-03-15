@@ -1,7 +1,7 @@
 #!/bin/bash
 #modify next two line for your DSP-W215
-IP="Enter IP address of the device here"
-PIN="Enter PIN number of the device here"
+IP="192.168.179.37"
+PIN="724396"
 #do not modify after this line if you don't know what you are doing
 
 function usage {
@@ -129,6 +129,24 @@ case "$1" in
 
         power=`getResult CurrentConsumption`
         echo "Power: $power W"
+	;;
+--gettemp )
+        #Next 2 rows to modify query
+	method="GetCurrentTemperature"
+        message="<$method xmlns=\"http://purenetworks.com/HNAP1/\"><ModuleID>2</ModuleID></$method>"
+
+	#Do not modify after this line
+        soapAction="SOAPAction: \"http://purenetworks.com/HNAP1/$method\""
+        authStr="$timestamp\"http://purenetworks.com/HNAP1/$method\""
+        auth=`hash_hmac "$authStr" "$privatekey"`
+        hnap_auth="HNAP_AUTH: $auth $timestamp"
+        data="$head$message$end"
+
+        #Get Device state from GetSocketSettings
+        ret=`curl -s -X POST -H "$contentType" -H "$soapAction" -H "$hnap_auth" -H "$cookie" --data-binary "$data" http://$IP/HNAP1`
+        #echo -e "Timestamp=$timestamp\tSOAPAction=$soapAction\tAuthStr=$authStr\tAUTH=$auth\tHNAP=$hnap_auth\tRET = $ret" #This line is for debug purpose
+        temp=`getResult CurrentTemperature`
+        echo "$temp"
 	;;
 * )
 	usage
