@@ -5,10 +5,11 @@ This script was made thanks to: https://github.com/bikerp/dsp-w215-hnap
 
 Usage: hnap-dsp-w215.sh [OPTION]
 
+```bash
 OPTION:
         --getstate              - Returns the state of the device ON or OFF
         --getpower              - Returns the current power consumption
         --gettemp               - Returns the current device temperature
         --setstate on|off       - Turns the device ON or OFF
-
+```
 Remark:	Do not forget to edit the first two lines of the script and enter the IP address and PIN number of the device inside the double quotes
