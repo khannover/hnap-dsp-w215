@@ -9,6 +9,7 @@ function usage {
 	echo -e "\nOPTION:"
 	echo -e "\t--getstate\t\t- Returns the state of the device ON or OFF"
 	echo -e "\t--getpower\t\t- Returns the current power consumption"
+	echo -e "\t--gettemp\t\t- Returns the current device temperature"
 	echo -e "\t--setstate on|off\t- Turns the device ON or OFF"
 }
 
