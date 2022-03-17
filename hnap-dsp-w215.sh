@@ -74,12 +74,12 @@ case "$1" in
 	state=`getResult OPStatus`
 	if [ "$state" = "false" ]
 	then
-		echo "State is OFF"
+		echo "OFF"
 	elif [ "$state" = "true" ]
 	then
-		echo "State is ON"
+		echo "ON"
 	else
-		echo "State is UNKNOWN"
+		echo "UNKNOWN"
 	fi
 	;;
 --setstate )
@@ -129,7 +129,7 @@ case "$1" in
         #echo -e "Timestamp=$timestamp\tSOAPAction=$soapAction\tAuthStr=$authStr\tAUTH=$auth\tHNAP=$hnap_auth\tRET = $ret" #This line is for debug purpose
 
         power=`getResult CurrentConsumption`
-        echo "Power: $power W"
+        echo "$power"
 	;;
 --gettemp )
         #Next 2 rows to modify query
